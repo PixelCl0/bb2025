@@ -205,7 +205,7 @@ Tu as cru que j’allais te laisser sans te montrer ma bouille ?
         const words = full.split(/\s+/).length;
         // 10 à 30 mots par seconde ≈ 33 à 100 ms par mot
         const avgWordLength = 5; // chars
-        const speed = 40; // ms par caractère (≈ 16 mots/s)
+        const speed = 30; // ms par caractère (≈ 16 mots/s)
         function step(){
           if(i<full.length){
             node.textContent += full[i];
