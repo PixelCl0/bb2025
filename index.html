@@ -6,16 +6,16 @@
   <title>Mission : découvrir le prénom</title>
 <style>
   :root{--bg:#000;--fg:#fff;--accent:#88c0ff}
-  html,body{height:100%;margin:0;font-family:Inter, System-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:var(--fg)}
+  html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:var(--fg)}
   body{background:var(--bg);display:flex;align-items:center;justify-content:center}
   .app{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
 
-  /* toutes les pages sauf 9 et 10 ont le même fond */
-  .page:not(.page-9):not(.page-10) {
-    background-image: url('assets/a_p.png');
-    background-size: cover;
-    background-position: center;
-  }
+  /* Fond plein écran (conservé) */
+  .bg-cover{position:fixed;inset:0;background-size:cover;background-position:center;z-index:-1}
+
+  /* On supprime le fond spécifique aux pages (1 à 8),
+     en retirant l'ancienne règle .page:not(.page-9):not(.page-10)
+     pour ne garder que le fond plein écran. */
 
   .page{display:none;max-width:900px;padding:40px;box-sizing:border-box}
   .page.active{display:block}
@@ -31,7 +31,6 @@
   /* page 10 + 8 full-screen background special */
   .page-10, .page-8{height:100vh;padding:60px}
   .page-10 .card, .page-8 .card{background:rgba(0,0,0,0.45)}
-  .bg-cover{position:fixed;inset:0;background-size:cover;background-position:center;z-index:-1}
 
   /* small responsive */
   @media (max-width:600px){.card{padding:18px}.text{font-size:16px}}
@@ -334,6 +333,5 @@ Tu as cru que j’allais te laisser sans te montrer ma bouille ?
       if(e.key === 'Enter'){ document.getElementById('submit-guess').click(); }
     });
   </script>
-</div>
 </body>
 </html>
