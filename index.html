@@ -4,26 +4,38 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Mission : découvrir le prénom</title>
-  <style>
-    :root{--bg:#000;--fg:#fff;--accent:#88c0ff}
-    html,body{height:100%;margin:0;font-family:Inter, System-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:var(--fg)}
-    body{background:var(--bg);display:flex;align-items:center;justify-content:center}
-    .app{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
-    .page{display:none;max-width:900px;padding:40px;box-sizing:border-box}
-    .page.active{display:block}
-    .card{background:rgba(255,255,255,0.03);border-radius:12px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
-    .text{white-space:pre-wrap;font-size:18px;line-height:1.5;min-height:220px}
-    .buttons{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
-    .btn{border:2px solid rgba(255,255,255,0.12);padding:10px 16px;border-radius:10px;background:transparent;color:var(--fg);cursor:pointer;font-weight:600}
-    .btn.hidden{visibility:hidden}
-    .input-text{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:var(--fg);font-size:16px}
-    .center{display:flex;align-items:center;justify-content:center}
-    .image-full{max-width:100%;border-radius:8px;margin-top:18px}
-    .page-10, .page-8{height:100vh;padding:60px}
-    .page-10 .card, .page-8 .card{background:rgba(0,0,0,0.45)}
-    .bg-cover{position:fixed;inset:0;background-size:cover;background-position:center;z-index:-1}
-    @media (max-width:600px){.card{padding:18px}.text{font-size:16px}}
-  </style>
+<style>
+  :root{--bg:#000;--fg:#fff;--accent:#88c0ff}
+  html,body{height:100%;margin:0;font-family:Inter, System-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:var(--fg)}
+  body{background:var(--bg);display:flex;align-items:center;justify-content:center}
+  .app{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+
+  /* toutes les pages sauf 9 et 10 ont le même fond */
+  .page:not(.page-9):not(.page-10) {
+    background-image: url('assets/a_p.png');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .page{display:none;max-width:900px;padding:40px;box-sizing:border-box}
+  .page.active{display:block}
+  .card{background:rgba(255,255,255,0.03);border-radius:12px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+  .text{white-space:pre-wrap;font-size:18px;line-height:1.5;min-height:220px}
+  .buttons{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{border:2px solid rgba(255,255,255,0.12);padding:10px 16px;border-radius:10px;background:transparent;color:var(--fg);cursor:pointer;font-weight:600}
+  .btn.hidden{visibility:hidden}
+  .input-text{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:var(--fg);font-size:16px}
+  .center{display:flex;align-items:center;justify-content:center}
+  .image-full{max-width:100%;border-radius:8px;margin-top:18px}
+
+  /* page 10 + 8 full-screen background special */
+  .page-10, .page-8{height:100vh;padding:60px}
+  .page-10 .card, .page-8 .card{background:rgba(0,0,0,0.45)}
+  .bg-cover{position:fixed;inset:0;background-size:cover;background-position:center;z-index:-1}
+
+  /* small responsive */
+  @media (max-width:600px){.card{padding:18px}.text{font-size:16px}}
+</style>
 </head>
 <body>
   <div class="app">
