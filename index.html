@@ -62,6 +62,7 @@ Une des lettres de mon prénom est la première lettre d’un art martial que l�
           <div class="buttons">
             <button class="btn btn-indice">Indice</button>
             <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
+            <button class="btn btn-guess hidden">Tentative de prénom</button>
           </div>
           <div class="hint" style="margin-top:12px;display:none;color:var(--fg, #fff)">D’autres sportifs (moins forts que Papa évidemment !) tel que Teddy Riner s’y sont aussi illustrés</div>
         </div>
@@ -75,6 +76,7 @@ Le nom complet de la race de l’individu de type chien est composé de 3 mots. 
           <div class="buttons">
             <button class="btn btn-indice">Indice</button>
             <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
+            <button class="btn btn-guess hidden">Tentative de prénom</button>
           </div>
           <div class="hint" style="margin-top:12px;display:none;color:var(--fg, #fff)">La voyelle n’est pas du tout présente dans l'abréviation de la race:  Staffie (oui il y en a 2, à toi de trouver laquelle est la bonne)</div>
         </div>
@@ -88,6 +90,7 @@ Première mission facile pour s’échauffer. Une des lettres de mon prénom est
           <div class="buttons">
             <button class="btn btn-indice">Indice</button>
             <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
+            <button class="btn btn-guess hidden">Tentative de prénom</button>
           </div>
           <div class="hint" style="margin-top:12px;display:none;color:var(--fg, #fff)">Déjà un indice ? Je me demande si tu es vraiment proche de cette tribu pour pouvoir m’aider suffisamment… </div>
         </div>
@@ -101,6 +104,7 @@ J’ai cru comprendre que les individus que votre monde appelle “Parents” on
           <div class="buttons">
             <button class="btn btn-indice">Indice</button>
             <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
+            <button class="btn btn-guess hidden">Tentative de prénom</button>
           </div>
           <div class="hint" style="margin-top:12px;display:none;color:var(--fg, #fff)">Je suis un bébé 2025, qu’est que tu penses de vivre avec son temps et d’utiliser Google pour trouver le dit élément ?</div>
         </div>
@@ -113,6 +117,7 @@ Les individus humains de cette tribu semblent apprécier des objets qu’ils app
           </div>
           <div class="buttons">
             <button class="btn btn-indice">Indice</button>
+            <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
             <button class="btn btn-guess hidden">Tentative de prénom</button>
           </div>
           <div class="hint" style="margin-top:12px;display:none;color:var(--fg, #fff)">Cette lettre est aussi la seule en commun dans les 3 prénoms des individus de type humain de ma tribu</div>
@@ -202,10 +207,7 @@ Tu as cru que j’allais te laisser sans te montrer ma bouille ?
         const full = node.textContent.trim();
         node.textContent = '';
         let i=0;
-        const words = full.split(/\s+/).length;
-        // 10 à 30 mots par seconde ≈ 33 à 100 ms par mot
-        const avgWordLength = 5; // chars
-        const speed = 30; // ms par caractère (≈ 16 mots/s)
+        const speed = 30; // ms par caractère
         function step(){
           if(i<full.length){
             node.textContent += full[i];
@@ -220,7 +222,7 @@ Tu as cru que j’allais te laisser sans te montrer ma bouille ?
     }
 
     // pages and navigation
-    const pagesOrderPool = [2,3,5,6]; // page 4 always first
+    const pagesOrderPool = [2,3,4,5,6]; // toutes les missions
     let missionOrder = [];
     function shuffle(array){
       for(let i=array.length-1;i>0;i--){
@@ -231,7 +233,7 @@ Tu as cru que j’allais te laisser sans te montrer ma bouille ?
     function buildMissionOrder(){
       const pool = [...pagesOrderPool];
       shuffle(pool);
-      missionOrder = [4, ...pool];
+      missionOrder = pool; // toutes les missions jouées
     }
 
     function showPage(id){
@@ -248,7 +250,26 @@ Tu as cru que j’allais te laisser sans te montrer ma bouille ?
         for(const node of textNodes){
           await typeText(node);
         }
-        actionBtns.forEach(b=>b.classList.remove('hidden'));
+
+        // logique boutons : dernier = "Tentative", sinon "Mission suivante"
+        if(id.startsWith('page-')){
+          const num = parseInt(id.split('-')[1]);
+          const idx = missionOrder.indexOf(num);
+          if(idx === missionOrder.length-1){
+            const guessBtn = el.querySelector('.btn-guess');
+            if(guessBtn) guessBtn.classList.remove('hidden');
+          } else {
+            const nextBtn = el.querySelector('.btn-next');
+            if(nextBtn) nextBtn.classList.remove('hidden');
+          }
+          const indiceBtn = el.querySelector('.btn-indice');
+          if(indiceBtn) indiceBtn.classList.remove('hidden');
+        }
+
+        // autres boutons
+        if(!id.startsWith('page-2') && !id.startsWith('page-3') && !id.startsWith('page-4') && !id.startsWith('page-5') && !id.startsWith('page-6')){
+          actionBtns.forEach(b=>b.classList.remove('hidden'));
+        }
       })();
     }
 
