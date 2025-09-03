@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mission : découvrir le prénom</title>
+  <style>
+    :root{--bg:#000;--fg:#fff;--accent:#88c0ff}
+    html,body{height:100%;margin:0;font-family:Inter, System-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:var(--fg)}
+    body{background:var(--bg);display:flex;align-items:center;justify-content:center}
+    .app{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+    .page{display:none;max-width:900px;padding:40px;box-sizing:border-box}
+    .page.active{display:block}
+    .card{background:rgba(255,255,255,0.03);border-radius:12px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+    .text{white-space:pre-wrap;font-size:18px;line-height:1.5;min-height:220px}
+    .buttons{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+    .btn{border:2px solid rgba(255,255,255,0.12);padding:10px 16px;border-radius:10px;background:transparent;color:var(--fg);cursor:pointer;font-weight:600}
+    .btn.hidden{visibility:hidden}
+    .input-text{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:var(--fg);font-size:16px}
+    .center{display:flex;align-items:center;justify-content:center}
+    .image-full{max-width:100%;border-radius:8px;margin-top:18px}
+    /* bracket style for buttons like [ .... ] */
+    .btn::before{content:"[";margin-right:6px}
+    .btn::after{content:"]";margin-left:6px}
+
+    /* page 10 full-screen background special */
+    .page-10{height:100vh;padding:60px}
+    .page-10 .card{background:rgba(0,0,0,0.45)}
+    .bg-cover{position:fixed;inset:0;background-size:cover;background-position:center;z-index:-1}
+
+    /* small responsive */
+    @media (max-width:600px){.card{padding:18px}.text{font-size:16px}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- container of pages -->
+    <div id="pages">
+
+      <!-- Page 1 -->
+      <section id="page-1" class="page active">
+        <div class="card">
+          <div class="text" data-text>
+"Maternité de Voiron,
+Je viens apparemment de rejoindre une nouvelle tribu qui se reconnaît sous le nom HULEUX DESGRANGES
+Elle semble composée de 3 individus de type humain, un individu de type chien pot de colle et un individu de type lapin qui se prend pour un panda.
+Ils semblent tous avoir plusieurs points communs et l'un d'entre eux semble être l'amour pour le jeu.
+Je crois donc que je vais devoir jouer à mon tout premier jeu pour découvrir mon prénom.
+Mais à quelques heures de vie, il se peut que j'ai besoin d'aide
+Est ce que je peux compter sur toi ?"
+          </div>
+          <div class="buttons center">
+            <button class="btn" id="start-btn">Commencer la mission</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pages 2..6 (missions de lettres) -->
+      <!-- We'll create placeholders and reveal them in a randomized order (with page 4 first) -->
+
+      <section id="page-2" class="page">
+        <div class="card">
+          <div class="text" data-text>
+"Une des lettres de mon prénom est la première lettre d’un art martial que l’individu se faisant prénommé Papa a pratiqué dans son enfance"
+          </div>
+          <div class="buttons">
+            <button class="btn btn-indice">indice</button>
+            <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
+            <button class="btn btn-guess hidden">Tentative de prénom</button>
+          </div>
+          <div class="hint" style="margin-top:12px;display:none;color:var(--fg, #fff)">"d’autres sportifs (moins forts que Papa évidemment !) tel que Teddy Riner s’y sont aussi illustrés"</div>
+        </div>
+      </section>
+
+      <section id="page-3" class="page">
+        <div class="card">
+          <div class="text" data-text>
+"Le nom complet de la race de l’individu de type chien est composé de 3 mots. Une des lettres de mon prénom est la voyelle qu’on retrouve le moins dans le nom de sa race."
+          </div>
+          <div class="buttons">
+            <button class="btn btn-indice">indice</button>
+            <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
+            <button class="btn btn-guess hidden">Tentative de prénom</button>
+          </div>
+          <div class="hint" style="margin-top:12px;display:none;color:var(--fg, #fff)">"la voyelle n’est pas non plus présente dans l'abréviation de la race:  Staffie (oui il y en a 2, à toi de trouver laquelle est la bonne)"</div>
+        </div>
+      </section>
+
+      <section id="page-4" class="page">
+        <div class="card">
+          <div class="text" data-text>
+"Première mission facile pour s’échauffer. Une des lettres de mon prénom est la première lettre du prénom de l’individu qui semble faire office de grande sœur pour moi."
+          </div>
+          <div class="buttons">
+            <button class="btn btn-indice">indice</button>
+            <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
+          </div>
+          <div class="hint" style="margin-top:12px;display:none;color:var(--fg, #fff)">"déjà un indice ? Je me demande si tu es vraiment proche de cette tribu pour pouvoir m’aider suffisamment… "</div>
+        </div>
+      </section>
+
+      <section id="page-5" class="page">
+        <div class="card">
+          <div class="text" data-text>
+"J’ai cru comprendre que les individus que votre monde appelle “Parents” ont tous les deux un certain amour pour la science. Une des lettres de mon prénom est la lettre correspondant à l’élément 53 de la classification période des éléments chimiques."
+          </div>
+          <div class="buttons">
+            <button class="btn btn-indice">indice</button>
+            <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
+            <button class="btn btn-guess hidden">Tentative de prénom</button>
+          </div>
+          <div class="hint" style="margin-top:12px;display:none;color:var(--fg, #fff)">"Je suis un bébé 2025, qu’est que tu penses de vivre avec son temps et d’utiliser Google pour trouver le dit élément ?"</div>
+        </div>
+      </section>
+
+      <section id="page-6" class="page">
+        <div class="card">
+          <div class="text" data-text>
+"Les individus humains de cette tribu semblent apprécier des objets qu’ils appellent “livres”. Un de ces dits livres, que l’individu qui se fait appeler “Maman” trouve fascinant s’appelle “La disparition” écrit par Georges Perec. Je crois qu’une des lettres de mon prénom a un rapport avec ce livre …"
+          </div>
+          <div class="buttons">
+            <button class="btn btn-indice">indice</button>
+            <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
+            <button class="btn btn-guess hidden">Tentative de prénom</button>
+          </div>
+          <div class="hint" style="margin-top:12px;display:none;color:var(--fg, #fff)">"cette lettre est aussi la seule en commun dans les 3 prénoms des individus de type humain de ma tribu"</div>
+        </div>
+      </section>
+
+      <!-- Page 7 : saisie
+           On met cette page hors du pool 2..6 -->
+      <section id="page-7" class="page">
+        <div class="card">
+          <div class="text" data-text>
+"Nous voilà en possession de 5 lettres normalement … mais je crois qu’il faut y mettre un peu d’ordre. J’ai bien peur que ce soit trop fatiguant pour moi alors je te laisse faire et écrire ta réponse une fois que tu penses avoir trouvé l'enchaînement qui constitue un prénom"
+          </div>
+          <div style="margin-top:18px">
+            <input id="guess-input" class="input-text" placeholder="Écris le prénom ici" />
+          </div>
+          <div class="buttons">
+            <button class="btn" id="submit-guess">Soumettre ce prénom</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Page 8 : succès -->
+      <section id="page-8" class="page">
+        <div class="card">
+          <div class="center">
+            <img src="assets/succes.png" alt="succès" style="max-width:200px;display:block" />
+          </div>
+          <div class="text" data-text>
+"Mission réussie, merci pour ton aide dans ce premier jeu du reste de ma vie ! Maintenant que tu sais comment m’appeler, voici la brève histoire de mes premières heures de vie : 
+
+Moi c’est donc Julie ! 
+Je suis née le /date à modifier/ à /heure à modifier/. Je mesure /taille à modifier/ et pèse /poids à modifier/. Je suis heureuse de rejoindre cette belle tribu qui se porte bien après la mission “Accouchement” ! 
+
+J’ai hâte de te rencontrer toi aussi et avant cela si tu souhaites me laisser un premier message (que je lirai dans longtemps), mes parents se feront un plaisir de le lire ici :"
+          </div>
+          <div style="margin-top:12px">
+            <!-- Google Form intégré -->
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSeZEnebsNwN9T1jSuq5/viewform?embedded=true" width="100%" height="500" frameborder="0">Chargement…</iframe>
+          </div>
+          <div class="buttons">
+            <button class="btn" id="a-tres-vite">A très vite</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Page 9 : échec -->
+      <section id="page-9" class="page">
+        <div class="card">
+          <div class="center">
+            <img src="assets/fail.jfif" alt="fail" style="max-width:220px;display:block" />
+          </div>
+          <div class="text" data-text>
+"Bizarre ce prénom tu ne trouves pas ? Je ne crois pas qu’on ait la bonne réponse. 
+
+Peut-être est-ce juste une fote de frap ? Réessaie ici :"
+          </div>
+          <div class="buttons">
+            <button class="btn" id="try-again">Essaie encore</button>
+            <button class="btn" id="restart">Recommencer</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Page 10 : photo fond
+           background image -> assets/pexels-osmachko-235243.jpg
+           emplacement pour d'autres photos dans le code (commentaires) -->
+      <section id="page-10" class="page page-10">
+        <div id="page10-bg" class="bg-cover" style="background-image:url('assets/pexels-osmachko-235243.jpg')"></div>
+        <div class="card">
+          <div class="text" data-text>
+"Tu as cru que j’allais te laisser sans te montrer ma bouille ?"
+          </div>
+          <div style="margin-top:18px">
+            <!-- Emplacements pour ajouter d'autres photos :
+                 <img src="assets/photo1.jpg" alt="photo1" class="image-full">
+                 <img src="assets/photo2.jpg" alt="photo2" class="image-full">
+               -->
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <script>
+    // Utility: typewriter effect for elements with data-text
+    function typeText(node){
+      return new Promise(resolve=>{
+        const full = node.textContent.trim();
+        node.textContent = '';
+        let i=0;
+        const speed = 18; // ms per char
+        function step(){
+          if(i<full.length){
+            node.textContent += full[i];
+            i++;
+            setTimeout(step, speed);
+          } else {
+            resolve();
+          }
+        }
+        step();
+      });
+    }
+
+    // pages and navigation
+    const pagesOrderPool = [2,3,5,6]; // page 4 always first
+    let missionOrder = [];
+    function shuffle(array){
+      for(let i=array.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [array[i],array[j]]=[array[j],array[i]];
+      }
+    }
+    function buildMissionOrder(){
+      const pool = [...pagesOrderPool];
+      shuffle(pool);
+      missionOrder = [4, ...pool];
+    }
+
+    // show a page by id, hide others
+    function showPage(id){
+      document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+      const el = document.getElementById(id);
+      el.classList.add('active');
+      // special handling: when showing any .text with data-text in this page, run typewriter and hide buttons until finished
+      const textNodes = el.querySelectorAll('[data-text]');
+      // hide actionable buttons until finished
+      const actionBtns = el.querySelectorAll('.btn:not(.btn-indice)');
+      actionBtns.forEach(b=>b.classList.add('hidden'));
+      // hide hints by default (keep current display)
+      const hints = el.querySelectorAll('.hint');
+      hints.forEach(h=>h.style.display='none');
+
+      // sequentially type each data-text in the page (if many)
+      (async()=>{
+        for(const node of textNodes){
+          await typeText(node);
+        }
+        // after typing finished, reveal appropriate buttons
+        actionBtns.forEach(b=>b.classList.remove('hidden'));
+      })();
+    }
+
+    // initial setup
+    buildMissionOrder();
+    let currentMissionIndex = -1; // before missions
+
+    // helper to go to next mission in missionOrder or to page7 when done
+    function goToNextMission(){
+      currentMissionIndex++;
+      if(currentMissionIndex < missionOrder.length){
+        const pnum = missionOrder[currentMissionIndex];
+        showPage('page-'+pnum);
+      } else {
+        showPage('page-7');
+      }
+    }
+
+    // start button
+    document.getElementById('start-btn').addEventListener('click', ()=>{
+      currentMissionIndex = 0; // show first mission which must be page 4 due to buildMissionOrder
+      const pnum = missionOrder[currentMissionIndex];
+      showPage('page-'+pnum);
+    });
+
+    // attach indice buttons on all pages
+    document.querySelectorAll('.btn-indice').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        const el = e.target.closest('.card');
+        const hint = el.querySelector('.hint');
+        if(hint) hint.style.display='block';
+      });
+    });
+
+    // next buttons (Ok je l'ai)
+    document.querySelectorAll('.btn-next').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        goToNextMission();
+      });
+    });
+
+    // guess buttons that may appear on last missions (those that show 'Tentative de prénom')
+    document.querySelectorAll('.btn-guess').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        showPage('page-7');
+      });
+    });
+
+    // submit guess from page 7
+    document.getElementById('submit-guess').addEventListener('click', ()=>{
+      const v = document.getElementById('guess-input').value.trim().toLowerCase();
+      if(v === 'julie'){
+        showPage('page-8');
+      } else {
+        showPage('page-9');
+      }
+    });
+
+    // page 8 button A très vite -> go to page 10 (the photo page).
+    document.getElementById('a-tres-vite').addEventListener('click', ()=>{
+      showPage('page-10');
+    });
+
+    // page 9 try again -> back to page 7
+    document.getElementById('try-again').addEventListener('click', ()=>{
+      showPage('page-7');
+    });
+
+    // page 9 restart -> reset mission order and go to page 4
+    document.getElementById('restart').addEventListener('click', ()=>{
+      buildMissionOrder();
+      currentMissionIndex = 0;
+      const pnum = missionOrder[currentMissionIndex];
+      showPage('page-'+pnum);
+    });
+
+    // When user reaches page 10, change background to the image cover is already set via css inline.
+
+    // On initial load, type text for page 1 only (page 1 active by default)
+    window.addEventListener('load', ()=>{
+      const p1 = document.querySelector('#page-1');
+      const t = p1.querySelector('[data-text]');
+      // hide start button until typed
+      document.getElementById('start-btn').classList.add('hidden');
+      typeText(t).then(()=>{ document.getElementById('start-btn').classList.remove('hidden'); });
+    });
+
+    // Accessibility: allow Enter to submit guess
+    document.getElementById('guess-input').addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter'){ document.getElementById('submit-guess').click(); }
+    });
+
+    // Small safeguard: ensure pages 2..6 are never in ascending fixed order 2..6
+    // (We already guarantee page 4 first and shuffle others.)
+
+  </script>
+</body>
+</html>
