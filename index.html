@@ -4,63 +4,66 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Mission : découvrir le prénom</title>
-  <style>
-    :root{--bg:#000;--fg:#fff;--accent:#88c0ff}
-    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:var(--fg)}
-    body{background:var(--bg);display:flex;align-items:center;justify-content:center}
-    .app{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
-    .bg-cover{position:fixed;inset:0;background-size:cover;background-position:center;z-index:-1}
-    .page{display:none;max-width:900px;padding:40px;box-sizing:border-box}
-    .page.active{display:block}
-    .card{background:rgba(255,255,255,0.03);border-radius:12px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
-    .text{white-space:pre-wrap;font-size:18px;line-height:1.5;min-height:220px}
-    .buttons{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
-    .btn{border:2px solid rgba(255,255,255,0.12);padding:10px 16px;border-radius:10px;background:transparent;color:var(--fg);cursor:pointer;font-weight:600}
-    .btn.hidden{visibility:hidden}
-    .input-text{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:var(--fg);font-size:16px}
-    .center{display:flex;align-items:center;justify-content:center}
-    .image-full{max-width:100%;border-radius:8px;margin-top:18px}
-    .page-10, .page-8{height:100vh;padding:60px}
-    .page-10 .card, .page-8 .card{background:rgba(0,0,0,0.45)}
-    @media (max-width:600px){.card{padding:18px}.text{font-size:16px}}
-  </style>
+<style>
+  :root{--bg:#000;--fg:#fff;--accent:#88c0ff}
+  html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:var(--fg)}
+  body{background:var(--bg);display:flex;align-items:center;justify-content:center}
+  .app{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+
+  /* Fond plein écran (conservé) */
+  .bg-cover{position:fixed;inset:0;background-size:cover;background-position:center;z-index:-1}
+
+  /* On supprime le fond spécifique aux pages (1 à 8),
+     en retirant l'ancienne règle .page:not(.page-9):not(.page-10)
+     pour ne garder que le fond plein écran. */
+
+  .page{display:none;max-width:900px;padding:40px;box-sizing:border-box}
+  .page.active{display:block}
+  .card{background:rgba(255,255,255,0.03);border-radius:12px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+  .text{white-space:pre-wrap;font-size:18px;line-height:1.5;min-height:220px}
+  .buttons{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+  .btn{border:2px solid rgba(255,255,255,0.12);padding:10px 16px;border-radius:10px;background:transparent;color:var(--fg);cursor:pointer;font-weight:600}
+  .btn.hidden{visibility:hidden}
+  .input-text{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:var(--fg);font-size:16px}
+  .center{display:flex;align-items:center;justify-content:center}
+  .image-full{max-width:100%;border-radius:8px;margin-top:18px}
+
+  /* page 10 + 8 full-screen background special */
+  .page-10, .page-8{height:100vh;padding:60px}
+  .page-10 .card, .page-8 .card{background:rgba(0,0,0,0.45)}
+
+  /* small responsive */
+  @media (max-width:600px){.card{padding:18px}.text{font-size:16px}}
+</style>
 </head>
 <body>
 <div id="bg-all" class="bg-cover" style="background-image:url('assets/a_p.png');"></div>
-<div class="app">
-  <div id="pages">
+  <div class="app">
+    <div id="pages">
 
-    <section id="page-1" class="page active">
-      <div class="card">
-        <div class="text" data-text>
+      <section id="page-1" class="page active">
+        <div class="card">
+          <div class="text" data-text>
 Maternité de Voiron,
 Je viens apparemment de rejoindre une nouvelle tribu qui se reconnaît sous le nom HULEUX DESGRANGES
 Elle semble composée de 3 individus de type humain, un individu de type chien pot de colle et un individu de type lapin qui se prend pour un panda.
 Ils semblent tous avoir plusieurs points communs et l'un d'entre eux semble être l'amour pour le jeu.
 Je crois donc que je vais devoir jouer à mon tout premier jeu pour découvrir mon prénom.
 Mais à quelques heures de vie, il se peut que j'aie besoin d'aide...
-Est ce que je peux compter sur toi ?
-        </div>
-        <div class="buttons center">
-          <button class="btn" id="start-btn">Commencer la mission</button>
-        </div>
-      </div>
-    </section>
 
-    <section id="page-1b" class="page">
-      <div class="card">
-        <div class="text" data-text>
-Nous allons devoir répondre à une question par lettre de mon prénom.
-Je crois que mes parents veulent nous tester : les lettres ne seront même pas dans l'ordre !
+Nous allons devoir répondre à une question par lettre de mon prénom 
+Et je crois que mes parents veulent nous tester : les lettres ne seront même pas dans l'ordre ! 
 Prends bien de quoi noter pour te souvenir des lettres trouvées et donner ta réponse à la fin !
+            
+Est ce que je peux compter sur toi ?
+          </div>
+          <div class="buttons center">
+            <button class="btn" id="start-btn">Commencer la mission</button>
+          </div>
         </div>
-        <div class="buttons center">
-          <button class="btn" id="ready-btn">Compris ! C'est parti !</button>
-        </div>
-      </div>
-    </section>
+      </section>
 
- <section id="page-2" class="page">
+      <section id="page-2" class="page">
         <div class="card">
           <div class="text" data-text>
 Une des lettres de mon prénom est la première lettre d’un art martial que l’individu se faisant prénommé Papa a pratiqué dans son enfance
@@ -194,144 +197,146 @@ Tu as cru que j’allais te laisser sans te montrer ma bouille ?
           </div>
         </div>
       </section>
+
+    </div>
   </div>
-</div>
 
-<script>
-  function typeText(node){
-    return new Promise(resolve=>{
-      const full = node.textContent.trim();
-      node.textContent = '';
-      let i=0;
-      const speed = 30;
-      function step(){
-        if(i<full.length){
-          node.textContent += full[i];
-          i++;
-          setTimeout(step, speed);
-        } else { resolve(); }
-      }
-      step();
-    });
-  }
-
-  const pagesOrderPool = [2,3,5,6];
-  let missionOrder = [];
-  function shuffle(array){
-    for(let i=array.length-1;i>0;i--){
-      const j=Math.floor(Math.random()*(i+1));
-      [array[i],array[j]]=[array[j],array[i]];
-    }
-  }
-  function buildMissionOrder(){
-    const pool = [...pagesOrderPool];
-    shuffle(pool);
-    missionOrder = [4, ...pool];
-  }
-
-  function showPage(id){
-    document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-    const el = document.getElementById(id);
-    el.classList.add('active');
-    const textNodes = el.querySelectorAll('[data-text]');
-    const actionBtns = el.querySelectorAll('.btn');
-    actionBtns.forEach(b=>b.classList.add('hidden'));
-    const hints = el.querySelectorAll('.hint');
-    hints.forEach(h=>h.style.display='none');
-
-    (async()=>{
-      for(const node of textNodes){
-        await typeText(node);
-      }
-
-      if(id.startsWith('page-')){
-        const num = parseInt(id.split('-')[1]);
-        const idx = missionOrder.indexOf(num);
-        if(idx === missionOrder.length-1){
-          const guessBtn = el.querySelector('.btn-guess');
-          if(guessBtn) guessBtn.classList.remove('hidden');
-        } else {
-          const nextBtn = el.querySelector('.btn-next');
-          if(nextBtn) nextBtn.classList.remove('hidden');
+  <script>
+    function typeText(node){
+      return new Promise(resolve=>{
+        const full = node.textContent.trim();
+        node.textContent = '';
+        let i=0;
+        const speed = 30;
+        function step(){
+          if(i<full.length){
+            node.textContent += full[i];
+            i++;
+            setTimeout(step, speed);
+          } else { resolve(); }
         }
-        const indiceBtn = el.querySelector('.btn-indice');
-        if(indiceBtn) indiceBtn.classList.remove('hidden');
+        step();
+      });
+    }
+
+    const pagesOrderPool = [2,3,5,6];
+    let missionOrder = [];
+    function shuffle(array){
+      for(let i=array.length-1;i>0;i--){
+        const j=Math.floor(Math.random()*(i+1));
+        [array[i],array[j]]=[array[j],array[i]];
       }
+    }
+    function buildMissionOrder(){
+      const pool = [...pagesOrderPool];
+      shuffle(pool);
+      missionOrder = [4, ...pool];
+    }
 
-      if(!id.startsWith('page-2') && !id.startsWith('page-3') && !id.startsWith('page-4') && !id.startsWith('page-5') && !id.startsWith('page-6')){
-        actionBtns.forEach(b=>b.classList.remove('hidden'));
-      }
-    })();
-  }
+    function showPage(id){
+      document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+      const el = document.getElementById(id);
+      el.classList.add('active');
+      const textNodes = el.querySelectorAll('[data-text]');
+      const actionBtns = el.querySelectorAll('.btn');
+      actionBtns.forEach(b=>b.classList.add('hidden'));
+      const hints = el.querySelectorAll('.hint');
+      hints.forEach(h=>h.style.display='none');
 
-  buildMissionOrder();
-  let currentMissionIndex = -1;
+      (async()=>{
+        for(const node of textNodes){
+          await typeText(node);
+        }
 
-  function goToNextMission(){
-    currentMissionIndex++;
-    if(currentMissionIndex < missionOrder.length){
+        if(id.startsWith('page-')){
+          const num = parseInt(id.split('-')[1]);
+          const idx = missionOrder.indexOf(num);
+          if(idx === missionOrder.length-1){
+            const guessBtn = el.querySelector('.btn-guess');
+            if(guessBtn) guessBtn.classList.remove('hidden');
+          } else {
+            const nextBtn = el.querySelector('.btn-next');
+            if(nextBtn) nextBtn.classList.remove('hidden');
+          }
+          const indiceBtn = el.querySelector('.btn-indice');
+          if(indiceBtn) indiceBtn.classList.remove('hidden');
+        }
+
+        if(!id.startsWith('page-2') && !id.startsWith('page-3') && !id.startsWith('page-4') && !id.startsWith('page-5') && !id.startsWith('page-6')){
+          actionBtns.forEach(b=>b.classList.remove('hidden'));
+        }
+      })();
+    }
+
+    buildMissionOrder();
+    let currentMissionIndex = -1;
+
+    function goToNextMission(){
+      currentMissionIndex++;
+      if(currentMissionIndex < missionOrder.length){
+        const pnum = missionOrder[currentMissionIndex];
+        showPage('page-'+pnum);
+      } else { showPage('page-7'); }
+    }
+
+    document.getElementById('start-btn').addEventListener('click', ()=>{
+      currentMissionIndex = 0;
       const pnum = missionOrder[currentMissionIndex];
       showPage('page-'+pnum);
-    } else { showPage('page-7'); }
-  }
-
-  document.getElementById('start-btn').addEventListener('click', ()=>{
-    showPage('page-1b');
-  });
-
-  document.getElementById('ready-btn').addEventListener('click', ()=>{
-    currentMissionIndex = 0;
-    const pnum = missionOrder[currentMissionIndex];
-    showPage('page-'+pnum);
-  });
-
-  document.querySelectorAll('.btn-indice').forEach(btn=>{
-    btn.addEventListener('click', (e)=>{
-      const el = e.target.closest('.card');
-      const hint = el.querySelector('.hint');
-      if(hint) hint.style.display='block';
     });
-  });
 
-  document.querySelectorAll('.btn-next').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
-      goToNextMission();
+    document.querySelectorAll('.btn-indice').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        const el = e.target.closest('.card');
+        const hint = el.querySelector('.hint');
+        if(hint) hint.style.display='block';
+      });
     });
-  });
 
-  document.querySelectorAll('.btn-guess').forEach(btn=>{
-    btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.btn-next').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        goToNextMission();
+      });
+    });
+
+    document.querySelectorAll('.btn-guess').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        showPage('page-7');
+      });
+    });
+
+    document.getElementById('submit-guess').addEventListener('click', ()=>{
+      const v = document.getElementById('guess-input').value.trim().toLowerCase();
+      if(v === 'julie'){
+        showPage('page-8');
+      } else { showPage('page-9'); }
+    });
+
+    document.getElementById('a-tres-vite').addEventListener('click', ()=>{
+      showPage('page-10');
+    });
+
+    document.getElementById('try-again').addEventListener('click', ()=>{
       showPage('page-7');
     });
-  });
 
-  document.getElementById('submit-guess').addEventListener('click', ()=>{
-    const v = document.getElementById('guess-input').value.trim().toLowerCase();
-    if(v === 'julie'){
-      showPage('page-8');
-    } else { showPage('page-9'); }
-  });
+    document.getElementById('restart').addEventListener('click', ()=>{
+      buildMissionOrder();
+      currentMissionIndex = 0;
+      const pnum = missionOrder[currentMissionIndex];
+      showPage('page-'+pnum);
+    });
 
-  document.getElementById('a-tres-vite').addEventListener('click', ()=>{
-    showPage('page-10');
-  });
+    window.addEventListener('load', ()=>{
+      const p1 = document.querySelector('#page-1');
+      const t = p1.querySelector('[data-text]');
+      document.getElementById('start-btn').classList.add('hidden');
+      typeText(t).then(()=>{ document.getElementById('start-btn').classList.remove('hidden'); });
+    });
 
-  document.getElementById('try-again').addEventListener('click', ()=>{
-    showPage('page-7');
-  });
-
-  document.getElementById('restart').addEventListener('click', ()=>{
-    buildMissionOrder();
-    currentMissionIndex = 0;
-    const pnum = missionOrder[currentMissionIndex];
-    showPage('page-'+pnum);
-  });
-
-  window.addEventListener('load', ()=>{
-    const p1 = document.querySelector('#page-1');
-    const t = p1.querySelector('[data-text]');
-    document.getElementById('start-btn').classList.add('hidden');
-    typeText(t).then(()=>{ document.getElementById('start-btn').classList.remove('hidden'); });
-  });
-
-  document.getElementById('guess-input
+    document.getElementById('guess-input').addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter'){ document.getElementById('submit-guess').click(); }
+    });
+  </script>
+</body>
+</html>
