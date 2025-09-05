@@ -1,38 +1,38 @@
 <!doctype html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Mission : découvrir le prénom</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Mission : découvrir le prénom</title>
 <style>
-  :root{--bg:#000;--fg:#fff;--accent:#88c0ff}
-  html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:var(--fg)}
-  body{background:var(--bg);display:flex;align-items:center;justify-content:center}
-  .app{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
-  .bg-cover{position:fixed;inset:0;background-size:cover;background-position:center;z-index:-1}
-  .page{display:none;max-width:900px;padding:40px;box-sizing:border-box}
-  .page.active{display:block}
-  .card{background:rgba(255,255,255,0.03);border-radius:12px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
-  .text{white-space:pre-wrap;font-size:18px;line-height:1.5;min-height:220px}
-  .buttons{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
-  .btn{border:2px solid rgba(255,255,255,0.12);padding:10px 16px;border-radius:10px;background:transparent;color:var(--fg);cursor:pointer;font-weight:600}
-  .btn.hidden{visibility:hidden}
-  .input-text{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:var(--fg);font-size:16px}
-  .center{display:flex;align-items:center;justify-content:center}
-  .image-full{max-width:100%;border-radius:8px;margin-top:18px}
-  .page-10, .page-8{height:100vh;padding:60px}
-  .page-10 .card, .page-8 .card{background:rgba(0,0,0,0.45)}
-  @media (max-width:600px){.card{padding:18px}.text{font-size:16px}}
+:root{--bg:#000;--fg:#fff;--accent:#88c0ff}
+html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;color:var(--fg)}
+body{background:var(--bg);display:flex;align-items:center;justify-content:center}
+.app{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.bg-cover{position:fixed;inset:0;background-size:cover;background-position:center;z-index:-1}
+.page{display:none;max-width:900px;padding:40px;box-sizing:border-box}
+.page.active{display:block}
+.card{background:rgba(255,255,255,0.03);border-radius:12px;padding:28px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+.text{white-space:pre-wrap;font-size:18px;line-height:1.5;min-height:220px}
+.buttons{margin-top:22px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{border:2px solid rgba(255,255,255,0.12);padding:10px 16px;border-radius:10px;background:transparent;color:var(--fg);cursor:pointer;font-weight:600}
+.btn.hidden{visibility:hidden}
+.input-text{width:100%;padding:12px;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:transparent;color:var(--fg);font-size:16px}
+.center{display:flex;align-items:center;justify-content:center}
+.image-full{max-width:100%;border-radius:8px;margin-top:18px}
+.page-10, .page-8{height:100vh;padding:60px}
+.page-10 .card, .page-8 .card{background:rgba(0,0,0,0.45)}
+@media (max-width:600px){.card{padding:18px}.text{font-size:16px}}
 </style>
 </head>
 <body>
 <div id="bg-all" class="bg-cover" style="background-image:url('assets/a_p.png');"></div>
 <div class="app">
-  <div id="pages">
+<div id="pages">
 
-    <section id="page-1" class="page active">
-      <div class="card">
-        <div class="text" data-text>
+<section id="page-1" class="page active">
+  <div class="card">
+    <div class="text" data-text>
 Maternité de Voiron,
 Je viens apparemment de rejoindre une nouvelle tribu qui se reconnaît sous le nom HULEUX DESGRANGES
 Elle semble composée de 3 individus de type humain, un individu de type chien pot de colle et un individu de type lapin qui se prend pour un panda.
@@ -40,127 +40,128 @@ Ils semblent tous avoir plusieurs points communs et l'un d'entre eux semble êtr
 Je crois donc que je vais devoir jouer à mon tout premier jeu pour découvrir mon prénom.
 Mais à quelques heures de vie, il se peut que j'aie besoin d'aide...
 Est ce que je peux compter sur toi ?
-        </div>
-        <div class="buttons center">
-          <button class="btn" id="start-btn">Commencer la mission</button>
-        </div>
-      </div>
-    </section>
+    </div>
+    <div class="buttons center">
+      <button class="btn" id="start-btn">Commencer la mission</button>
+    </div>
+  </div>
+</section>
 
-    <section id="page-2" class="page">
-      <div class="card">
-        <div class="text" data-text>
+<section id="page-2" class="page">
+  <div class="card">
+    <div class="text" data-text>
 Nous allons avoir une mission par lettre de mon prénom
 Et pour que la tâche soit encore plus ardue, cela ne nous donnera pas les lettres dans l'ordre
-        </div>
-        <div class="buttons center">
-          <button class="btn btn-next hidden">Compris !</button>
-        </div>
-      </div>
-    </section>
+    </div>
+    <div class="buttons center">
+      <button class="btn btn-next hidden">Compris !</button>
+    </div>
+  </div>
+</section>
 
-    <section id="page-3" class="page">
-      <div class="card">
-        <div class="text" data-text>
-Une des lettres de mon prénom est la première lettre d’un art martial que l’individu se faisant prénommé Papa a pratiqué dans son enfance
-        </div>
-        <div style="margin-top:18px">
-          <input class="input-text letter-input" placeholder="Écris la lettre ici" maxlength="1" />
-        </div>
-        <div class="buttons">
-          <button class="btn btn-indice">Indice</button>
-          <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
-        </div>
-        <div class="hint" style="margin-top:12px;display:none;color:var(--fg)">D’autres sportifs (moins forts que Papa évidemment !) tel que Teddy Riner s’y sont aussi illustrés</div>
-      </div>
-    </section>
-
-    <section id="page-4" class="page">
-      <div class="card">
-        <div class="text" data-text>
+<!-- Pages missions 3 à 7 -->
+<section id="page-3" class="page">
+  <div class="card">
+    <div class="text" data-text>
 Une des lettres de mon prénom est la lettre commune aux prénoms des deux individus de type lapin qui ont habité ou habite encore chez ma tribu.
-        </div>
-        <div style="margin-top:18px">
-          <input class="input-text letter-input" placeholder="Écris la lettre ici" maxlength="1" />
-        </div>
-        <div class="buttons">
-          <button class="btn btn-indice">Indice</button>
-          <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
-        </div>
-        <div class="hint" style="margin-top:12px;display:none;color:var(--fg)">Cette voyelle n’est pas du tout présente dans l'abréviation de la race:  Staffie (oui il y en a 2, à toi de trouver laquelle est la bonne)</div>
-      </div>
-    </section>
+    </div>
+    <div style="margin-top:18px">
+      <input class="input-text letter-input" placeholder="Écris la lettre ici" maxlength="1" />
+    </div>
+    <div class="buttons">
+      <button class="btn btn-indice">Indice</button>
+      <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
+    </div>
+    <div class="hint" style="margin-top:12px;display:none;color:var(--fg)">Cette voyelle n’est pas du tout présente dans l'abréviation de la race:  Staffie (oui il y en a 2, à toi de trouver laquelle est la bonne)</div>
+  </div>
+</section>
 
-    <section id="page-5" class="page">
-      <div class="card">
-        <div class="text" data-text>
+<section id="page-4" class="page">
+  <div class="card">
+    <div class="text" data-text>
 Première mission facile pour s’échauffer. Une des lettres de mon prénom est la première lettre du prénom de l’individu qui semble faire office de grande sœur pour moi.
-        </div>
-        <div style="margin-top:18px">
-          <input class="input-text letter-input" placeholder="Écris la lettre ici" maxlength="1" />
-        </div>
-        <div class="buttons">
-          <button class="btn btn-indice">Indice</button>
-          <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
-        </div>
-        <div class="hint" style="margin-top:12px;display:none;color:var(--fg)">Déjà un indice ? Je me demande si tu es vraiment proche de cette tribu pour pouvoir m’aider suffisamment… </div>
-      </div>
-    </section>
+    </div>
+    <div style="margin-top:18px">
+      <input class="input-text letter-input" placeholder="Écris la lettre ici" maxlength="1" />
+    </div>
+    <div class="buttons">
+      <button class="btn btn-indice">Indice</button>
+      <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
+    </div>
+    <div class="hint" style="margin-top:12px;display:none;color:var(--fg)">Déjà un indice ? Je me demande si tu es vraiment proche de cette tribu pour pouvoir m’aider suffisamment… </div>
+  </div>
+</section>
 
-    <section id="page-6" class="page">
-      <div class="card">
-        <div class="text" data-text>
+<section id="page-5" class="page">
+  <div class="card">
+    <div class="text" data-text>
+Une des lettres de mon prénom est la première lettre d’un art martial que l’individu se faisant prénommé Papa a pratiqué dans son enfance
+    </div>
+    <div style="margin-top:18px">
+      <input class="input-text letter-input" placeholder="Écris la lettre ici" maxlength="1" />
+    </div>
+    <div class="buttons">
+      <button class="btn btn-indice">Indice</button>
+      <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
+    </div>
+    <div class="hint" style="margin-top:12px;display:none;color:var(--fg)">D’autres sportifs (moins forts que Papa évidemment !) tel que Teddy Riner s’y sont aussi illustrés</div>
+  </div>
+</section>
+
+<section id="page-6" class="page">
+  <div class="card">
+    <div class="text" data-text>
 J’ai cru comprendre que les individus que votre monde appelle “ Mes parents” ont tous les deux un certain amour pour la science. Une des lettres de mon prénom est la lettre correspondant à l’élément 53 de la classification période des éléments chimiques.
-        </div>
-        <div style="margin-top:18px">
-          <input class="input-text letter-input" placeholder="Écris la lettre ici" maxlength="1" />
-        </div>
-        <div class="buttons">
-          <button class="btn btn-indice">Indice</button>
-          <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
-        </div>
-        <div class="hint" style="margin-top:12px;display:none;color:var(--fg)">Je suis un bébé 2025, qu’est que tu penses de vivre avec son temps et d’utiliser Google pour trouver le dit élément ?</div>
-      </div>
-    </section>
+    </div>
+    <div style="margin-top:18px">
+      <input class="input-text letter-input" placeholder="Écris la lettre ici" maxlength="1" />
+    </div>
+    <div class="buttons">
+      <button class="btn btn-indice">Indice</button>
+      <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
+    </div>
+    <div class="hint" style="margin-top:12px;display:none;color:var(--fg)">Je suis un bébé 2025, qu’est que tu penses de vivre avec son temps et d’utiliser Google pour trouver le dit élément ?</div>
+  </div>
+</section>
 
-    <section id="page-7" class="page">
-      <div class="card">
-        <div class="text" data-text>
+<section id="page-7" class="page">
+  <div class="card">
+    <div class="text" data-text>
 Les individus humains de cette tribu semblent apprécier des objets qu’ils appellent “livres”. Un de ces dits livres, que l’individu qui se fait appeler “Maman” trouve fascinant s’appelle “La disparition” écrit par Georges Perec. Je crois qu’une des lettres de mon prénom a un rapport avec ce livre …
-        </div>
-        <div style="margin-top:18px">
-          <input class="input-text letter-input" placeholder="Écris la lettre ici" maxlength="1" />
-        </div>
-        <div class="buttons">
-          <button class="btn btn-indice">Indice</button>
-          <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
-        </div>
-        <div class="hint" style="margin-top:12px;display:none;color:var(--fg)">Cette lettre est aussi la seule en commun dans les 3 prénoms des individus de type humain de ma tribu</div>
-      </div>
-    </section>
+    </div>
+    <div style="margin-top:18px">
+      <input class="input-text letter-input" placeholder="Écris la lettre ici" maxlength="1" />
+    </div>
+    <div class="buttons">
+      <button class="btn btn-indice">Indice</button>
+      <button class="btn btn-next hidden">Ok je l’ai, mission suivante !</button>
+    </div>
+    <div class="hint" style="margin-top:12px;display:none;color:var(--fg)">Cette lettre est aussi la seule en commun dans les 3 prénoms des individus de type humain de ma tribu</div>
+  </div>
+</section>
 
-    <section id="page-8" class="page page-8">
-      <div id="page8-bg" class="bg-cover" style="background-image:url('assets/pexels-osmachko-235243.jpg')"></div>
-      <div class="card">
-        <div class="center">
-          <img src="assets/succes.png" alt="succès" style="max-width:200px;display:block" />
-        </div>
-        <div class="text" data-text>
-Mission réussie ! Voici les lettres que tu as trouvées : 
+<section id="page-8" class="page page-8">
+  <div id="page8-bg" class="bg-cover" style="background-image:url('assets/pexels-osmachko-235243.jpg')"></div>
+  <div class="card">
+    <div class="center">
+      <img src="assets/succes.png" alt="succès" style="max-width:200px;display:block" />
+    </div>
+    <div class="text" data-text>
+Voici nos 5 missions et tes réponses : 
 <div id="letters-summary"></div>
 
-Maintenant que tu sais comment m’appeler, écris le prénom final :
-        </div>
-        <div style="margin-top:18px">
-          <input id="guess-input" class="input-text" placeholder="Écris le prénom ici" />
-        </div>
-        <div class="buttons">
-          <button class="btn" id="submit-guess">Soumettre ce prénom</button>
-        </div>
-      </div>
-    </section>
-
+... mais je crois qu’il faut y mettre un peu d’ordre. J’ai bien peur que ce soit trop fatiguant pour moi alors je te laisse faire et écrire ta réponse une fois que tu penses avoir trouvé l'enchaînement qui constitue un prénom
+    </div>
+    <div style="margin-top:18px">
+      <input id="guess-input" class="input-text" placeholder="Écris le prénom ici" />
+    </div>
+    <div class="buttons">
+      <button class="btn" id="submit-guess">Soumettre ce prénom</button>
+    </div>
   </div>
+</section>
+
+</div>
 </div>
 
 <script>
@@ -182,9 +183,10 @@ function typeText(node){
 }
 
 let missionOrder = [];
-const pagesOrderPool = [4,5,6,7]; // page 3 sort toujours en premier
+const pagesOrderPool = [3,4,6,7]; // Page 5 sera injectée en premier
 let currentMissionIndex = -1;
-const answers = {}; // stocke la lettre par page id
+const answers = {};
+const questions = {}; // stocke texte complet des missions
 
 function shuffle(array){
   for(let i=array.length-1;i>0;i--){
@@ -194,9 +196,8 @@ function shuffle(array){
 }
 
 function buildMissionOrder(){
-  const pool = [...pagesOrderPool];
-  shuffle(pool);
-  missionOrder = [3, ...pool];
+  shuffle(pagesOrderPool);
+  missionOrder = [4, ...pagesOrderPool]; // page 4 d'abord
 }
 
 function showPage(id){
@@ -213,7 +214,6 @@ function showPage(id){
     for(const node of textNodes){
       await typeText(node);
     }
-    // boutons
     const nextBtn = el.querySelector('.btn-next');
     if(nextBtn) nextBtn.classList.remove('hidden');
     const indiceBtn = el.querySelector('.btn-indice');
@@ -222,31 +222,42 @@ function showPage(id){
 }
 
 function goToNextMission(){
-  // enregistrer lettre si champ existant
-  const page = document.getElementById('page-'+missionOrder[currentMissionIndex]);
-  const input = page.querySelector('.letter-input');
-  if(input) answers['page-'+missionOrder[currentMissionIndex]] = input.value.trim().toUpperCase();
-  
+  if(currentMissionIndex>=0){
+    const page = document.getElementById('page-'+missionOrder[currentMissionIndex]);
+    const input = page.querySelector('.letter-input');
+    if(input){
+      answers['page-'+missionOrder[currentMissionIndex]] = input.value.trim().toUpperCase();
+      const questionText = page.querySelector('.text').textContent.trim();
+      questions['page-'+missionOrder[currentMissionIndex]] = questionText;
+    }
+  }
   currentMissionIndex++;
   if(currentMissionIndex < missionOrder.length){
     showPage('page-'+missionOrder[currentMissionIndex]);
   } else {
-    // afficher page 8 et remplir résumé lettres
+    // page 8
     const summary = document.getElementById('letters-summary');
-    summary.innerHTML = missionOrder.map(p=>'Mission '+p+' : '+(answers['page-'+p]||'_')).join('<br>');
+    summary.innerHTML = missionOrder.map(p=>'Mission '+p+': '+questions['page-'+p]+'<br>Lettre choisie : '+(answers['page-'+p]||'_')).join('<br><br>');
     showPage('page-8');
   }
 }
 
 // Event listeners
 document.getElementById('start-btn').addEventListener('click', ()=>{
-  buildMissionOrder();
-  currentMissionIndex=0;
-  showPage('page-'+missionOrder[currentMissionIndex]);
+  showPage('page-2');
 });
 
 document.querySelectorAll('.btn-next').forEach(btn=>{
-  btn.addEventListener('click', goToNextMission);
+  btn.addEventListener('click', ()=>{
+    if(currentMissionIndex==-1){
+      // page 2 -> lancer missions
+      buildMissionOrder();
+      currentMissionIndex=0;
+      showPage('page-'+missionOrder[currentMissionIndex]);
+    } else {
+      goToNextMission();
+    }
+  });
 });
 
 document.querySelectorAll('.btn-indice').forEach(btn=>{
@@ -259,7 +270,7 @@ document.querySelectorAll('.btn-indice').forEach(btn=>{
 document.getElementById('submit-guess').addEventListener('click', ()=>{
   const v = document.getElementById('guess-input').value.trim().toLowerCase();
   if(v==='julie'){
-    alert('Bravo ! Mission accomplie !'); // tu peux remplacer par page 10 si souhaité
+    alert('Bravo ! Mission accomplie !');
   } else {
     alert('Essaye encore !');
   }
